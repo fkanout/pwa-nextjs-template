@@ -98,7 +98,7 @@ export async function getStaticPaths() {
   // Get the paths we want to pre-render based on posts
 
   const res = await fetch(`https://doa.kanout.com/api/v1/channels/`)
-  channels = await res.json()
+  const channels = await res.json()
   const paths = channels.map((channel) => ({
     params: { id: channel.channelId },
   }))
