@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Head from 'next/head'
-import channels from '../../api/channels'
+
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import axios from 'axios'
@@ -93,20 +93,20 @@ const Podcasts = (data) => {
   )
 }
 
-export async function getStaticPaths() {
-  // Call an external API endpoint to get posts
+// export async function getStaticPaths() {
+//   // Call an external API endpoint to get posts
 
 
 
-  // Get the paths we want to pre-render based on posts
-  const paths = channels.map((channel) => ({
-    params: { id: channel.channelId },
-  }))
+//   // Get the paths we want to pre-render based on posts
+//   const paths = channels.map((channel) => ({
+//     params: { id: channel.channelId },
+//   }))
 
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
-  return { paths, fallback: false }
-}
+//   // We'll pre-render only these paths at build time.
+//   // { fallback: false } means other routes should 404.
+//   return { paths, fallback: false }
+// }
 
 
 export async function getStaticProps(context) {
