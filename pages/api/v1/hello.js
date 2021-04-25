@@ -13,7 +13,7 @@ client.on("error", function (err) {
 
 export default (req, res) => {
   client.get("channels").then((channelsData) => {
-    res.status(200).json(channelsData)
+    res.status(200).json(JSON.parse(channelsData))
   })
 
 }
