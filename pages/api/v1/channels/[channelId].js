@@ -5,7 +5,7 @@ let client = new Redis("rediss://:8447d921a22640c3a4be219b67620c05@eu1-immortal-
 
 export default (req, res) => {
   const { channelId } = req.query
-  const { page } = ctx.request.query;
+  const { page } = req.query;
 
   if (channelId) {
     client.get(channelId).then((podcastString) => {
