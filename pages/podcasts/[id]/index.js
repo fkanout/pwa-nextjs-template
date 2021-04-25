@@ -16,7 +16,6 @@ const chunk = (chunkSize, array) => {
 };
 const getResults = (podcasts, page) => {
   const pages = chunk(20, podcasts)
-  console.log(page)
   return pages[page]
 }
 
@@ -31,7 +30,6 @@ const Podcasts = (data) => {
   if (!data.podcasts) {
     return (<h1>No data</h1>)
   }
-  console.log(data.podcasts)
   return (
     <div className="w-full h-full bg-black mt-16">
       <Head>
@@ -110,24 +108,17 @@ export async function getStaticPaths() {
 
 
 export async function getStaticProps(context) {
-  console.log("called");
   let podcasts = [];
-  console.log(context.params.id)
   try {
     const res = await fetch(`https://doa.kanout.com/api/v1/channels/${context.params.id}`)
     podcasts = await res.json()
-
   }
   catch (error) {
     console.log('error', error)
   }
-
-  console.log(podcasts)
   return {
     props: { podcasts }, // will be passed to the page component as props
   }
-
-
 }
 
 export default Podcasts
