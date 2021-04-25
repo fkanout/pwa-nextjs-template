@@ -44,18 +44,14 @@ const Podcasts = (data) => {
           <button className="flex-shrink-0 rounded-full h-12 w-12 mr-4 ml-4 self-center flex items-center justify-center text-green-500 focus:outline-none transition-colors duration-150 border border-green-500 focus:shadow-outline hover:bg-green-500 hover:text-white"
             onClick={async () => {
               const urlHost = `https://days-of-allah.herokuapp.com/audio/${podcast.id}`
-
-
               const { data: audio } = await axios(urlHost);
-
               setUrl(audio.url)
               setTitle(podcast.title)
               setPlayingTitle(podcast.title)
             }}>
-
             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAjElEQVRIie3UsQ3CMBBGYZtNkNgEJEbJCOzHHCAowgIg6o+CiigoWD6jFHmlJfvd6c5/SguzBTtccEOHHC04++SITaRgjCcOWLUSxHUzIajv5gdBXTcFArhjP/bO19WDwpquOef18LB+GyaIEjxSSl3RjTkMuemaNvtooVFxCq96INh6x3WvRVwv/I0X45q9tZAyZ4sAAAAASUVORK5CYII=" />
           </button>
-          <img className="self-center w-12 h-12 rounded mr-3" src={podcast.thumbnails} />
+          <img className="self-center w-12 h-12 rounded mr-3" src={podcast.thumbnail} />
           <div className="self-center">
             <div className=" text-l text-gray-300">
               {podcast.title}
