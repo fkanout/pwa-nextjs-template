@@ -93,20 +93,25 @@ const Podcasts = (data) => {
   )
 }
 
-// export async function getStaticPaths() {
-//   // Call an external API endpoint to get posts
+export async function getStaticPaths() {
+  // Call an external API endpoint to get posts
+  // Get the paths we want to pre-render based on posts
+  try {
+    const res = await fetch(`https://doa.kanout.com/api/v1/channels/`)
+    channels = await res.json()
+    const paths = channels.map((channel) => ({
+      params: { id: channel.channelId },
+    }))
+  }
+  catch (error) {
+    console.log('error', error)
+  }
 
 
-
-//   // Get the paths we want to pre-render based on posts
-//   const paths = channels.map((channel) => ({
-//     params: { id: channel.channelId },
-//   }))
-
-//   // We'll pre-render only these paths at build time.
-//   // { fallback: false } means other routes should 404.
-//   return { paths, fallback: false }
-// }
+  // We'll pre-render only these paths at build time.
+  // { fallback: false } means other routes should 404.
+  return { paths, fallback: false }
+}
 
 
 export async function getStaticProps(context) {
