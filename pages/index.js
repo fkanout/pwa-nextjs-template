@@ -47,6 +47,7 @@ export async function getStaticProps(context) {
   let channels = [];
   try {
     const res = await fetch(`https://doa.kanout.com/api/v1/hello`)
+    console.log(res);
     channels = await res.json()
   }
   catch (error) {
