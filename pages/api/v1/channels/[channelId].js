@@ -9,10 +9,9 @@ export default (req, res) => {
 
   if (channelId) {
     client.get(channelId).then((podcastString) => {
-
       const podcast = JSON.parse(podcastString);
       const pageNumber = page && typeof page === 'string' ? parseInt(page) : 0;
-      const pageSize = 20;
+      const pageSize = 30;
       const offset = pageNumber === 1 ? 0 : pageNumber * pageSize;
       const items = podcast.podcasts.slice(offset, offset + pageSize);
       return res.status(200).json(items)
