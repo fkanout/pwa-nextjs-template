@@ -5,9 +5,17 @@ let client = new Redis("rediss://:8447d921a22640c3a4be219b67620c05@eu1-immortal-
 
 export default (req, res) => {
   const { channelId } = req.query
+  const { page } = ctx.request.query;
+
   if (channelId) {
-    client.get(channelId).then((channelsData) => {
-      return res.status(200).json(JSON.parse(channelsData))
+    client.get(channelId).then((podcastString) => {
+
+      const podcast = JSON.parse(podcastString);
+      const pageNumber = page && typeof page === 'string' ? parseInt(page) : 0;
+      const pageSize = 20;
+      const offset = pageNumber === 1 ? 0 : pageNumber * pageSize;
+      const items = podcast.podcasts.slice(offset, offset + pageSize);
+      return res.status(200).json(items)
     })
   }
   res.status(400)
