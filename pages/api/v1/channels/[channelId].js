@@ -10,5 +10,5 @@ export default (req, res) => {
       return res.status(200).json(JSON.parse(channelsData))
     })
   }
-  res.status(404)
+  res.status(400)
 }
